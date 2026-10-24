@@ -1,0 +1,14 @@
+build/
+install/
+log/
+__pycache__/
+*.pyc
+
+# Local credentials, agent state and environment settings.
+.aws/
+.codex/
+.agents/
+.env
+.vscode
+.env.*
+!.env.example

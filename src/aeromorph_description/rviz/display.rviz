@@ -1,0 +1,80 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /RobotModel1
+      Splitter Ratio: 0.5
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 0.1
+      Plane Cell Count: 20
+      Color: 110; 110; 120
+      Alpha: 0.35
+      Reference Frame: <Fixed Frame>
+      Offset:
+        X: 0
+        Y: 0
+        Z: -0.02
+    - Class: rviz_default_plugins/RobotModel
+      Name: RobotModel
+      Enabled: true
+      Alpha: 1
+      Collision Enabled: false
+      Visual Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+      TF Prefix: ""
+      Update Interval: 0
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: false
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Marker Scale: 0.1
+  Enabled: true
+  Global Options:
+    Background Color: 40; 44; 52
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 1.65
+      Focal Point:
+        X: -0.12
+        Y: 0
+        Z: 0.04
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.85
+      Yaw: 0.8
+      Target Frame: <Fixed Frame>
+    Saved: ~
+Window Geometry:
+  Width: 1280
+  Height: 800
+  X: 40
+  Y: 40
+  Hide Left Dock: false
+  Hide Right Dock: false

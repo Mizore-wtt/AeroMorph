@@ -1,0 +1,492 @@
+<!--空中变构机器人 URDF 文件-->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="AeroMorph">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.1188668558262 -0.000113927677717715 0.0467458582673627"
+        rpy="0 0 0" />
+      <mass
+        value="0.279813179266757" />
+      <inertia
+        ixx="8.17927606900116E-05"
+        ixy="-3.60827508392573E-07"
+        ixz="-1.922094158165E-07"
+        iyy="0.000419506796000208"
+        iyz="6.12719500259543E-09"
+        izz="0.000488460428249702" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.16069370745458 -0.0660054935294195 0.017607272672183"
+        rpy="0 0 0" />
+      <mass
+        value="0.1238113611938" />
+      <inertia
+        ixx="9.94909208037223E-05"
+        ixy="7.23821910450601E-05"
+        ixz="2.23111170750164E-07"
+        iyy="0.000245953330553755"
+        iyz="-9.70487998215578E-08"
+        izz="0.000336818863688799" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="5" />
+  </joint>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="0.145010336748376 0.0956618786542805 0.0176072726721791"
+        rpy="0 0 0" />
+      <mass
+        value="0.123811361193738" />
+      <inertia
+        ixx="0.000132192712625118"
+        ixy="-9.46538833089237E-05"
+        ixz="2.05803430395616E-07"
+        iyy="0.000213251538732358"
+        iyz="1.29776777965235E-07"
+        izz="0.000336818863688798" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0.25021 -0.10278 0"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="5" />
+  </joint>
+  <link
+    name="fly1">
+    <inertial>
+      <origin
+        xyz="1.63162657329519E-06 -2.08588855261232E-07 -0.00259209447647187"
+        rpy="0 0 0" />
+      <mass
+        value="0.0018752335003349" />
+      <inertia
+        ixx="5.37385245589502E-07"
+        ixy="1.45024116485015E-11"
+        ixz="9.66971330732901E-12"
+        iyy="5.37303219831237E-07"
+        iyz="-7.24121970772036E-12"
+        izz="1.06087674613829E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fly_joint1"
+    type="continuous">
+    <origin
+      xyz="0.11289861052115 0.0744745884857635 0.0351"
+      rpy="0 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="fly1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="fly2">
+    <inertial>
+      <origin
+        xyz="1.9080336544075E-07 6.64390505278334E-07 -0.00259239341781897"
+        rpy="0 0 0" />
+      <mass
+        value="0.00187540176011115" />
+      <inertia
+        ixx="5.37399883062292E-07"
+        ixy="-4.79359564434242E-12"
+        ixz="4.54759991199016E-12"
+        iyy="5.37426996807153E-07"
+        iyz="5.82146265276581E-12"
+        izz="1.06100907675052E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fly_joint2"
+    type="continuous">
+    <origin
+      xyz="0.125106091089832 -0.0513909190417342 0.0350999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="fly2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="link4">
+    <inertial>
+      <origin
+        xyz="-0.0939510555819656 0.0232219449447139 0.0176072726721967"
+        rpy="0 0 0" />
+      <mass
+        value="0.123811361193832" />
+      <inertia
+        ixx="8.16111368152862E-05"
+        ixy="4.79664325987887E-05"
+        ixz="2.34950612980151E-07"
+        iyy="0.000263833114542193"
+        iyz="-6.32081760672493E-08"
+        izz="0.000336818863688799" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="-0.2705 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="5" />
+  </joint>
+  <link
+    name="link5">
+    <inertial>
+      <origin
+        xyz="-0.0757189651327757 -0.0602718664986035 0.0176072726721778"
+        rpy="0 0 0" />
+      <mass
+        value="0.123811361193665" />
+      <inertia
+        ixx="0.000149632039054482"
+        ixy="-0.000100343603919804"
+        ixz="1.93425024851408E-07"
+        iyy="0.000195812212302995"
+        iyz="1.47593440984592E-07"
+        izz="0.000336818863688797" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5"
+    type="revolute">
+    <origin
+      xyz="-0.2626 0.064896 0"
+      rpy="0 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="link5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="5" />
+  </joint>
+  <link
+    name="fly4">
+    <inertial>
+      <origin
+        xyz="-1.29052054875789E-07 -6.21899221123906E-07 -0.00259233880027515"
+        rpy="0 0 0" />
+      <mass
+        value="0.00187540538368366" />
+      <inertia
+        ixx="5.37397596550307E-07"
+        ixy="-5.45413764739055E-12"
+        ixz="-5.3880459382506E-12"
+        iyy="5.37424186472798E-07"
+        iyz="-5.55611177060826E-12"
+        izz="1.06100595926509E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fly_joint4"
+    type="continuous">
+    <origin
+      xyz="-0.105815713102293 -0.0842353801732085 0.0351"
+      rpy="0 0 0" />
+    <parent
+      link="link5" />
+    <child
+      link="fly4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="fly3">
+    <inertial>
+      <origin
+        xyz="4.12911506236791E-07 1.08732461118199E-07 -0.00259259078881627"
+        rpy="0 0 0" />
+      <mass
+        value="0.00187539205753947" />
+      <inertia
+        ixx="5.37418447784216E-07"
+        ixy="-1.94406863763945E-11"
+        ixz="9.14321183830042E-12"
+        iyy="5.37414656817448E-07"
+        iyz="6.40389225847537E-12"
+        izz="1.06101503392581E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.694117647058824 0.0980392156862745 0.0980392156862745 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://aeromorph_description/meshes/fly3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fly_joint3"
+    type="continuous">
+    <origin
+      xyz="-0.131299975790524 0.0324481242860013 0.0351000000000001"
+      rpy="0 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="fly3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
