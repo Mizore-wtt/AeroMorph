@@ -17,7 +17,7 @@ FOLD_JOINTS = ("joint1", "joint2", "joint3", "joint4")
 
 
 def create_model(stage):
-    """按 URDF 的父子关系创建外观；关节旋转由 USD 层级自动传递。"""
+    """读取 URDF 文件，转换为 USD 格式"""
     import numpy as np
     from pxr import Gf, Sdf, UsdGeom, UsdShade, Vt
 
@@ -43,6 +43,7 @@ def create_model(stage):
         xform.AddRotateXYZOp().Set(Gf.Vec3f(*rpy))
 
     def add_link(name, path):
+        # 加载 STL 模型
         UsdGeom.Xform.Define(stage, path)
         for index, visual in enumerate(links[name].findall("visual")):
             part = UsdGeom.Xform.Define(stage, f"{path}/visual_{index}")
@@ -82,6 +83,7 @@ def create_model(stage):
             UsdShade.MaterialBindingAPI.Apply(mesh.GetPrim()).Bind(material)
 
         for joint in children.get(name, []):
+            # 建立关节层级关系
             joint_path = f"{path}/{joint.get('name')}"
             xform = UsdGeom.Xform.Define(stage, joint_path)
             set_origin(xform, joint.find("origin"))
@@ -102,6 +104,7 @@ def create_model(stage):
 
 
 def create_joint_sliders(joint_ops):
+    # 创建关节控制滑块
     import omni.ui as ui
     from pxr import Gf
 
@@ -115,6 +118,7 @@ def create_joint_sliders(joint_ops):
                 op, axis = joint_ops[name]
                 with ui.HStack(height=28):
                     ui.Label(name, width=70)
+                    # 关节控制范围：从 -3.0～3.0(rad)
                     slider = ui.FloatSlider(min=-3.0, max=3.0, step=0.01)
                     slider.model.add_value_changed_fn(
                         lambda model, op=op, axis=axis: op.Set(
@@ -131,11 +135,13 @@ def main():
     log_dir.mkdir(parents=True, exist_ok=True)
     app = AppLauncher(
         device="cuda:0", visualizer=["kit"],
-        width=1280, height=720, window_width=1280, window_height=800,
+        width=1280, height=720, 
+        window_width=1280, window_height=800,
         kit_args=f"--/log/file={log_dir}/kit.log",
     ).app
     window = None
     exit_code = 0
+
     try:
         # Kit 启动后再导入其模块；这里只渲染外观，不启动物理仿真。
         import carb.settings
@@ -143,15 +149,17 @@ def main():
         from omni.kit.viewport.utility import get_active_viewport
         from pxr import Gf, UsdGeom, UsdLux
 
+        # 创建 USD 场景，加载机器人
         context = omni.usd.get_context()
         context.new_stage()
         stage = context.get_stage()
         UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
         UsdGeom.SetStageMetersPerUnit(stage, 1.0)
         joint_ops = create_model(stage)
+
+        # 保留穹顶照明，用深灰色覆盖视口背景。
         light = UsdLux.DomeLight.Define(stage, "/World/Light")
         light.CreateIntensityAttr(500.0)
-        # 保留穹顶照明，用深灰色覆盖视口背景。
         settings = carb.settings.get_settings()
         settings.set_int("/rtx/background/source/type", 2)
         settings.set("/rtx/background/source/color", [0.025, 0.025, 0.025])
@@ -165,10 +173,13 @@ def main():
         viewport.camera_path = str(camera.GetPath())
         settings.set_bool("/app/viewport/grid/enabled", True)
         settings.set_bool(f"/persistent/app/viewport/{viewport.id}/guide/grid/visible", True)
+        
+        # 创建滑块
         window = create_joint_sliders(joint_ops)
         print("[AeroMorph] 模型已加载，拖动四个滑块调整变构关节。", flush=True)
         while app.is_running():
             app.update()
+            
     except KeyboardInterrupt:
         pass
     except Exception:
