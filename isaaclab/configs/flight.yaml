@@ -1,0 +1,67 @@
+# 单位：m、kg、s、rad、N。URDF 未提供的旋翼参数是明确的仿真假设，非实机标定。
+parameter_source: simulation_assumption
+default_configuration: nominal
+# 角度相对 2026-10-25 CAD 零位，顺序 joint1/joint2/joint3/joint4。
+# CAD 零位四桨共线，展示保持零位；飞行使用通过离线配平检查的非零构型。
+configurations:
+  nominal: {joint1: -0.35, joint2: 0.25, joint3: 0.25, joint4: -0.35}
+  swept: {joint1: -0.55, joint2: 0.40, joint3: 0.35, joint4: -0.50}
+  asymmetric: {joint1: -0.30, joint2: 0.25, joint3: 0.30, joint4: -0.40}
+# 推力轴读取 URDF 旋翼关节 axis；thrust_sign 决定沿该轴哪侧产生正推力。
+# reaction_sign 指作用于机体、沿正推力方向的反扭矩符号，不是 joint axis 的正负。
+rotors:
+  - {link: fly1, thrust_sign: 1, reaction_sign: 1,  kappa_m: 0.018, max_thrust_n: 4.5, motor_tau_s: 0.02}
+  - {link: fly2, thrust_sign: 1, reaction_sign: -1, kappa_m: 0.018, max_thrust_n: 4.5, motor_tau_s: 0.02}
+  - {link: fly3, thrust_sign: 1, reaction_sign: -1, kappa_m: 0.018, max_thrust_n: 4.5, motor_tau_s: 0.02}
+  - {link: fly4, thrust_sign: 1, reaction_sign: 1,  kappa_m: 0.018, max_thrust_n: 4.5, motor_tau_s: 0.02}
+simulation:
+  dt_s: 0.002
+  attitude_decimation: 2
+  position_decimation: 10
+  # 50 Hz 显示，避免加速后的三叶桨在较低帧率下出现倒转错觉。
+  render_decimation: 10
+  log_decimation: 10
+  height_m: 1.2
+  yaw_rad: 0.0
+controller:
+  position_gain_s2: [2.0, 2.0, 3.0]
+  velocity_gain_s: [2.8, 2.8, 3.2]
+  attitude_frequency_rad_s: [8.0, 8.0, 4.0]
+  attitude_damping_ratio: [1.0, 1.0, 1.0]
+  max_angular_accel_rad_s2: [10.0, 10.0, 6.0]
+  max_tilt_rad: 0.30
+command:
+  horizontal_speed_m_s: 0.5
+  vertical_speed_m_s: 0.3
+  horizontal_accel_m_s2: 0.8
+  vertical_accel_m_s2: 0.6
+  capture_speed_m_s: 0.04
+  capture_time_s: 0.2
+allocation:
+  reference_length_m: 0.25
+  weights: [1.5, 4.0, 4.0, 1.0]
+  regularization: 0.00001
+  thrust_rate_n_s: 80.0
+  minimum_hover_margin: 0.03
+  max_condition: 10000.0
+  minimum_moment_n_m: 0.0001
+# 舵机参数同样是仿真假设。滑块给目标，实际关节由有限力矩驱动。
+morphing:
+  max_speed_rad_s: 0.08
+  max_accel_rad_s2: 0.08
+  servo_stiffness_n_m_rad: 12.0
+  servo_damping_n_m_s_rad: 0.8
+  servo_effort_limit_n_m: 1.0
+  minimum_hover_margin: 0.08
+  path_resolution_rad: 0.005
+  pause_tilt_rad: 0.15
+  pause_rate_rad_s: 0.6
+  maximum_tracking_error_rad: 0.04
+  momentum_filter_s: 0.04
+limits:
+  minimum_height_m: 0.20
+  maximum_height_m: 4.0
+  maximum_distance_m: 5.0
+  maximum_tilt_rad: 0.65
+  maximum_rate_rad_s: 8.0
+  saturation_timeout_s: 1.0

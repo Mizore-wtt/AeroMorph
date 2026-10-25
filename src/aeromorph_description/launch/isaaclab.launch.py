@@ -1,7 +1,7 @@
 '''
 在 Isaaclab 中展示机器人模型的 launch 文件
-author:GPT-6.1 high
-review:wutong
+author:GPT-6.1 Sol
+reviewer:wutong
 date:10.24
 '''
 

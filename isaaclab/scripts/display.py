@@ -1,7 +1,7 @@
 '''
 在 Isaac Lab 中显示固定的 AeroMorph，仅提供四个变构关节滑块
-author:GPT-6.1 high
-review:wutong
+author:GPT-6.1 Sol
+reviewer:wutong
 date:10.24
 '''
 
